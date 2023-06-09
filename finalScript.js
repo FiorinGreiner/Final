@@ -1,5 +1,5 @@
 let playerHealth = 10;
-let enemyHealth = 6;
+let enemyHealth = 5;
 let isPlayerTurn = true;
 let playergold = 0;
 
@@ -30,12 +30,21 @@ function displayStatus() {
 
 }
 
+// Function to handle animation end event
+function onAnimationEnd() {
+    document.querySelector('.enemy').classList.remove('shake-animation');
+}
+
+// Trigger the onAnimationEnd function when the animation ends
+document.querySelector('.enemy').addEventListener('animationend', onAnimationEnd);
+
 function playerAttack(noise) {
     if (isPlayerTurn) {
         damage2enemy = Math.round(noise / 10)
         enemyHealth -= damage2enemy;
         document.getElementById('notification').innerText = "You deal " + damage2enemy + " to the " + stage[countStage].name;
         displayStatus();
+        document.querySelector('.enemy').classList.add('shake-animation');
         isPlayerTurn = false;
         checkGameOver();
     } else {
@@ -101,6 +110,7 @@ let highestDecibel = 0;
 // Function to request microphone access and start recording
 function startRecording() {
     if (isPlayerTurn) {
+        document.getElementById('notification').innerText = "Attacking...";
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(function (stream) {
                 audioStream = stream;
