@@ -9,13 +9,12 @@
     <p id="decibel">0 dB</p>
 
     <div class="combatMenu">
+        <h2 id="playerHealth">HP:N/A</h2>
         <h2 onclick="enemyTurn()" id="notification">It is your turn</h2>
 
-        <h2 id="playerHealth">HP:N/A</h2>
 
-        <button class="combatButton" onclick="startRecording()">Attack</button>
 
-        <button class="combatButton" id="menuButton" onclick="itemMenu()">items</button>
+        <button id="combatButton" onclick="startRecording()">Attack</button>
     </div>
 
     <div class="enemy" onclick="showStats()" title="Click to show stats">
